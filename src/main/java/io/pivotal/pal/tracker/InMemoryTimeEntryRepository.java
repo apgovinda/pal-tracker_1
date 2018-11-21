@@ -7,13 +7,19 @@ import java.util.List;
 public class InMemoryTimeEntryRepository implements TimeEntryRepository {
     private HashMap<Long, TimeEntry> timeEntries = new HashMap<>();
 
-    private long currentId = 0L;
+    private long currentId = 1L;
 
     @Override
     public TimeEntry create(TimeEntry timeEntry) {
-        Long id = ++currentId;
+        Long id = currentId++;
 
-        TimeEntry newTimeEntry = new TimeEntry( id,timeEntry.getProjectId(),timeEntry.getUserId(),timeEntry.getDate(),timeEntry.getHours());
+        TimeEntry newTimeEntry = new TimeEntry(
+            id,
+            timeEntry.getProjectId(),
+            timeEntry.getUserId(),
+            timeEntry.getDate(),
+            timeEntry.getHours()
+        );
 
         timeEntries.put(id, newTimeEntry);
         return newTimeEntry;
@@ -30,12 +36,16 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
     }
 
     @Override
-    public TimeEntry update(Long id, TimeEntry timeEntry)
-    {
-
+    public TimeEntry update(Long id, TimeEntry timeEntry) {
         if (find(id) == null) return null;
 
-        TimeEntry updatedEntry = new TimeEntry(id,timeEntry.getProjectId(),timeEntry.getUserId(),timeEntry.getDate(),timeEntry.getHours());
+        TimeEntry updatedEntry = new TimeEntry(
+            id,
+            timeEntry.getProjectId(),
+            timeEntry.getUserId(),
+            timeEntry.getDate(),
+            timeEntry.getHours()
+        );
 
         timeEntries.replace(id, updatedEntry);
         return updatedEntry;
@@ -46,3 +56,4 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
         timeEntries.remove(id);
     }
 }
+

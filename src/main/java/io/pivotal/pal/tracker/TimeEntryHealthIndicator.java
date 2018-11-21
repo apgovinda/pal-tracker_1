@@ -27,5 +27,3 @@ public class TimeEntryHealthIndicator implements HealthIndicator {
         return builder.build();
     }
 }
-
-

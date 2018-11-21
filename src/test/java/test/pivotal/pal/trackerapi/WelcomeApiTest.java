@@ -36,4 +36,3 @@ public class WelcomeApiTest {
         assertThat(body).isEqualTo("Hello from test");
     }
 }
-

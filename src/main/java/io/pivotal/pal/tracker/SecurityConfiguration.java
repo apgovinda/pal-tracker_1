@@ -25,23 +25,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         }
 
         http
-                .authorizeRequests()
-                .antMatchers("/**").hasRole("USER")
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().disable();
+            .authorizeRequests()
+            .antMatchers("/**").hasRole("USER")
+            .and()
+            .httpBasic()
+            .and()
+            .csrf().disable();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth
-                .inMemoryAuthentication()
+            .inMemoryAuthentication()
                 .withUser("user")
                 .password(encoder.encode("password"))
                 .roles("USER");
     }
 }
-
-

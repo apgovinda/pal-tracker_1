@@ -10,11 +10,9 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class InMemoryTimeEntryRepositoryTest
-{
+public class InMemoryTimeEntryRepositoryTest {
     @Test
-    public void create() throws Exception
-    {
+    public void create() throws Exception {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
 
         long projectId = 123L;
@@ -30,8 +28,7 @@ public class InMemoryTimeEntryRepositoryTest
     }
 
     @Test
-    public void find() throws Exception
-    {
+    public void find() throws Exception {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
 
         long projectId = 123L;
@@ -85,7 +82,9 @@ public class InMemoryTimeEntryRepositoryTest
     public void update_MissingEntry() {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
 
-        TimeEntry updatedEntry = repo.update(1L, new TimeEntry(321L, 654L, LocalDate.parse("2017-01-09"), 5));
+        TimeEntry updatedEntry = repo.update(
+                1L,
+                new TimeEntry(321L, 654L, LocalDate.parse("2017-01-09"), 5));
 
         assertThat(updatedEntry).isNull();
     }
